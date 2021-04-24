@@ -30,13 +30,14 @@ code {
   border-radius: 50%;
 }
 .emojis {
+  border-top: 1px solid rgb(230, 236, 240);
   display: flex;
   justify-content: space-around;
   height: 49px;
   flex-direction: row;
-  margin-bottom: -16px;
 }
 .tweetemojis {
+  margin-top: 12px;
   display: inline-flex;
   padding: 0 0.85rem;
   fill: currentcolor;
@@ -45,4 +46,15 @@ code {
   justify-content: center;
   align-items: center;
   font-size: 1.5em;
+}
+.numbers {
+  border-top: 1px solid rgb(230, 236, 240);
+  padding: 15px 0;
+  color: #657786;
+}
+.numbers span {
+  margin-left: 20px;
+  font-size: 16px;
+  color: black;
+  font-weight: 700;
 }
