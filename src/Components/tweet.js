@@ -14,6 +14,7 @@ function Tweet() {
             >
               Name
             </span>
+            
             <br />
             <span style={{ marginLeft: "10px", color: "#657786" }}>
               @Username
