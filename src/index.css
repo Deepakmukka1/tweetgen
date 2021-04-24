@@ -1,13 +1,48 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.border-tweet {
+  position: relative;
+  margin-top: 10%;
+  color: #d9d9d9;
+  border: 1px solid #d9d9d9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  left: 35%;
+  padding: 10px 15px 0 15px;
+  width: 480px;
+}
+.headerPart {
+  display: inline-flex;
+}
+.headerPart img {
+  height: 49px;
+  width: 49px;
+  border-radius: 50%;
+}
+.emojis {
+  display: flex;
+  justify-content: space-around;
+  height: 49px;
+  flex-direction: row;
+  margin-bottom: -16px;
+}
+.tweetemojis {
+  display: inline-flex;
+  padding: 0 0.85rem;
+  fill: currentcolor;
+  color: #657786;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
 }
