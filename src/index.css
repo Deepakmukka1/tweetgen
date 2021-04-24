@@ -53,8 +53,8 @@ code {
   color: #657786;
 }
 .numbers span {
-  margin-left: 20px;
   font-size: 16px;
   color: black;
   font-weight: 700;
+  margin-left: 5px;
 }
