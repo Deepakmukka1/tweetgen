@@ -7,11 +7,12 @@ function Tweet() {
   const data = {
     firsname: "Name",
     username: "Username",
-    time: "12",
+    time: "12:00",
     date: "1",
     month: "Jan",
     year: "2021",
     tweet: "Your tweet! ",
+    am_pm:'PM'
   };
   const [fileds, SetFileds] = useState(data);
   const handleChange = (e) => {
@@ -26,7 +27,7 @@ function Tweet() {
           <img src={images} />
           <div className="usernames" style={{ marginTop: "5px" }}>
             <span
-              style={{ marginLeft: "10px", color: "black", fontWeight: "bold" }}
+              style={{ marginLeft: "10px", color: "black", fontWeight: "bold" ,wordBreak:'break-word' }}
             >
               {fileds.firsname}{" "}
               {remove && (
@@ -48,17 +49,24 @@ function Tweet() {
             </span>
 
             <br />
-            <span style={{ marginLeft: "10px", color: "#657786" }}>
+            <span style={{ marginLeft: "10px", color: "#657786" ,wordBreak:'break-word'}}>
               @{fileds.username}
             </span>
           </div>
           {/* <img src={dots} /> */}
         </div>
-        <h3 style={{ fontSize: "23px", color: "black", fontWeight: "normal" ,wordBreak:'break-word'}}>
+        <h3
+          style={{
+            fontSize: "23px",
+            color: "black",
+            fontWeight: "normal",
+            wordBreak: "break-word",
+          }}
+        >
           {fileds.tweet}
         </h3>
         <p style={{ color: "#657786" }}>
-          {fileds.time} PM ·{` ${fileds.month} ${fileds.date} , ${fileds.year}`}
+          {fileds.time} {fileds.am_pm} ·{` ${fileds.month} ${fileds.date} , ${fileds.year}`}
         </p>
 
         <div className="numbers">
@@ -112,35 +120,68 @@ function Tweet() {
           onChange={(e) => handleChange(e)}
         />
         <h3>Time</h3>
+        <div style={{display:'inline-flex'}}>
         <input
-          placeholder="Enter time"
+          placeholder="Enter time (MM:SS)"
           name="time"
           onChange={(e) => handleChange(e)}
         />
-         <h3>Date</h3>
+         <select onChange={(e) => handleChange(e)} name="am_pm" style={{marginLeft:'5px',border:'1px solid #007BFF'}}>
+          <option selected="" disabled>
+            AM / PM
+          </option>
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+         
+        </select>
+        </div>
+        <h3>Date</h3>
         <input
           placeholder="Enter date"
           name="date"
+          type="number"
+          min="1"
+          max="31"
+          style={{width:'100px'}}
           onChange={(e) => handleChange(e)}
         />
-         <h3>Month</h3>
-        <input
+        <h3>Month</h3>
+        {/* <input
           placeholder="Enter month"
           name="month"
+        
           onChange={(e) => handleChange(e)}
-        />
-         <h3>Year</h3>
+        /> */}
+        <select onChange={(e) => handleChange(e)} name="month">
+          <option selected="" disabled>
+            Month
+          </option>
+          <option value="Jan">Jan</option>
+          <option value="Feb">Feb</option>
+          <option value="Mar">Mar</option>
+          <option value="Apr">Apr</option>
+          <option value="May">May</option>
+          <option value="Jun">Jun</option>
+          <option value="Jul">Jul</option>
+          <option value="Aug">Aug</option>
+          <option value="Sep">Sep</option>
+          <option value="Oct">Oct</option>
+          <option value="Nov">Nov</option>
+          <option value="Dec">Dec</option>
+        </select>
+        <h3>Year</h3>
         <input
           placeholder="Enter year"
           name="year"
           onChange={(e) => handleChange(e)}
         />
         <h3>Tweet</h3>
-        <input
+        <textarea rows="10" cols="50" style={{resize:'none',outline:'none',border:'1px solid #007BFF'}}
           placeholder="Enter tweet"
           name="tweet"
           onChange={(e) => handleChange(e)}
         />
+        <br />
         <br/>
       </div>
     </div>

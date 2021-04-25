@@ -65,4 +65,14 @@ code {
 }
 .container input {
   display: block;
+  line-height: 1rem;
+  padding: 10px;
+  border: 1px solid #007bff;
+  border-radius: 2px;
+  outline: none;
+}
+.container select {
+  line-height: 1rem;
+  padding: 10px;
+  border-radius: 5px;
 }
