@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import images from "./default-pfp.png";
-
+import "../App.css";
 
 function Tweet() {
+  const [remove, setRemove] = useState(false);
+  const data = {
+    firsname: "Name",
+    username: "Username",
+    time: "12",
+    date: "1",
+    month: "Jan",
+    year: "2021",
+    tweet: "Your tweet! ",
+  };
+  const [fileds, SetFileds] = useState(data);
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    SetFileds({ ...fileds, [name]: value });
+  };
   return (
     <div className="tweet-main">
       <div className="border-tweet">
@@ -12,27 +28,45 @@ function Tweet() {
             <span
               style={{ marginLeft: "10px", color: "black", fontWeight: "bold" }}
             >
-              Name <span style={{verticalAlign:'center',position:'relative',top:'4px'}} ><svg viewBox="0 0 48 24" style={{height:'1.25rem'}}><g><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path></g></svg></span>
+              {fileds.firsname}{" "}
+              {remove && (
+                <span
+                  style={{
+                    verticalAlign: "center",
+                    overflowWrap: "break-word",
+                    position: "relative",
+                    top: "2px",
+                  }}
+                >
+                  <svg viewBox="0 0 24 24" style={{ height: "1rem" }}>
+                    <g>
+                      <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path>
+                    </g>
+                  </svg>
+                </span>
+              )}
             </span>
 
             <br />
             <span style={{ marginLeft: "10px", color: "#657786" }}>
-              @Username
+              @{fileds.username}
             </span>
           </div>
           {/* <img src={dots} /> */}
         </div>
-        <h3 style={{ fontSize: "23px", color: "black", fontWeight: "normal" }}>
-      your tweet
+        <h3 style={{ fontSize: "23px", color: "black", fontWeight: "normal" ,wordBreak:'break-word'}}>
+          {fileds.tweet}
         </h3>
-        <p style={{ color: "#657786" }}>12:00 PM · Jan 1, 2021</p>
-       
+        <p style={{ color: "#657786" }}>
+          {fileds.time} PM ·{` ${fileds.month} ${fileds.date} , ${fileds.year}`}
+        </p>
+
         <div className="numbers">
-          <span >5.5K </span> Retweets
-          <span style={{marginLeft:'30px'}}>5.5K </span> Quotetweets
-          <span style={{marginLeft:'30px'}}>5.5K </span> Likes
+          <span>5.5K </span> Retweets
+          <span style={{ marginLeft: "30px" }}>5.5K </span> Quotetweets
+          <span style={{ marginLeft: "30px" }}>5.5K </span> Likes
         </div>
-        
+
         <div className="emojis">
           <svg viewBox="0 0 24 36" className="tweetemojis">
             <g>
@@ -56,6 +90,58 @@ function Tweet() {
             </g>
           </svg>
         </div>
+      </div>
+      <div className="container">
+        <h5>Add verified tag</h5>
+        <input
+          type="checkbox"
+          onClick={() => {
+            setRemove(!remove);
+          }}
+        />
+        <h3>Name</h3>
+        <input
+          placeholder="Enter name"
+          name="firsname"
+          onChange={(e) => handleChange(e)}
+        />
+        <h3>User Name</h3>
+        <input
+          placeholder="Enter username"
+          name="username"
+          onChange={(e) => handleChange(e)}
+        />
+        <h3>Time</h3>
+        <input
+          placeholder="Enter time"
+          name="time"
+          onChange={(e) => handleChange(e)}
+        />
+         <h3>Date</h3>
+        <input
+          placeholder="Enter date"
+          name="date"
+          onChange={(e) => handleChange(e)}
+        />
+         <h3>Month</h3>
+        <input
+          placeholder="Enter month"
+          name="month"
+          onChange={(e) => handleChange(e)}
+        />
+         <h3>Year</h3>
+        <input
+          placeholder="Enter year"
+          name="year"
+          onChange={(e) => handleChange(e)}
+        />
+        <h3>Tweet</h3>
+        <input
+          placeholder="Enter tweet"
+          name="tweet"
+          onChange={(e) => handleChange(e)}
+        />
+        <br/>
       </div>
     </div>
   );

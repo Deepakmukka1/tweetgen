@@ -58,3 +58,11 @@ code {
   font-weight: 700;
   margin-left: 5px;
 }
+.container {
+  position: relative;
+  margin-left: 10%;
+  margin-top: -30%;
+}
+.container input {
+  display: block;
+}
