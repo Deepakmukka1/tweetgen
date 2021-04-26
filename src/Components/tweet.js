@@ -34,7 +34,7 @@ console.log(URL.createObjectURL(e.target.files[0]))
     <div className="tweet-main">
       <div className="border-tweet">
         <div className="headerPart">
-          <img src={pro && fileds.proImage} />
+          <img src={fileds.proImage || images} />
           <div className="usernames" style={{ marginTop: "5px" }}>
             <span
               style={{ marginLeft: "10px", color: "black", fontWeight: "bold" ,wordBreak:'break-word' }}
