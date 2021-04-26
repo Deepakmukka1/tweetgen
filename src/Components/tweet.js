@@ -12,19 +12,29 @@ function Tweet() {
     month: "Jan",
     year: "2021",
     tweet: "Your tweet! ",
-    am_pm:'PM'
+    am_pm:'PM',
+    proImage: images,
   };
+
   const [fileds, SetFileds] = useState(data);
+  const [pro,setPro]=useState(false)
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     SetFileds({ ...fileds, [name]: value });
   };
+  const handleProfile=(e)=>{
+const file=e.target.files[0];
+//const name=e.target.name;
+SetFileds({ ...fileds, proImage: URL.createObjectURL(e.target.files[0]) });
+setPro(true)
+console.log(URL.createObjectURL(e.target.files[0]))
+  }
   return (
     <div className="tweet-main">
       <div className="border-tweet">
         <div className="headerPart">
-          <img src={images} />
+          <img src={pro && fileds.proImage} />
           <div className="usernames" style={{ marginTop: "5px" }}>
             <span
               style={{ marginLeft: "10px", color: "black", fontWeight: "bold" ,wordBreak:'break-word' }}
@@ -146,12 +156,7 @@ function Tweet() {
           onChange={(e) => handleChange(e)}
         />
         <h3>Month</h3>
-        {/* <input
-          placeholder="Enter month"
-          name="month"
-        
-          onChange={(e) => handleChange(e)}
-        /> */}
+    
         <select onChange={(e) => handleChange(e)} name="month">
           <option selected="" disabled>
             Month
@@ -180,6 +185,12 @@ function Tweet() {
           placeholder="Enter tweet"
           name="tweet"
           onChange={(e) => handleChange(e)}
+        />
+        <h3>Profile picture</h3>
+        <input
+          type="file"
+          name="proImage"
+          onChange={(e) => handleProfile(e)}
         />
         <br />
         <br/>
