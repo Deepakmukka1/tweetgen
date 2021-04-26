@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/tweetgen/static/css/main.3aad8350.chunk.css",
-    "main.js": "/tweetgen/static/js/main.40f09095.chunk.js",
-    "main.js.map": "/tweetgen/static/js/main.40f09095.chunk.js.map",
+    "main.js": "/tweetgen/static/js/main.fa66fe7c.chunk.js",
+    "main.js.map": "/tweetgen/static/js/main.fa66fe7c.chunk.js.map",
     "runtime-main.js": "/tweetgen/static/js/runtime-main.d3cf014d.js",
     "runtime-main.js.map": "/tweetgen/static/js/runtime-main.d3cf014d.js.map",
-    "static/js/2.ee473d97.chunk.js": "/tweetgen/static/js/2.ee473d97.chunk.js",
-    "static/js/2.ee473d97.chunk.js.map": "/tweetgen/static/js/2.ee473d97.chunk.js.map",
+    "static/js/2.90f4e28c.chunk.js": "/tweetgen/static/js/2.90f4e28c.chunk.js",
+    "static/js/2.90f4e28c.chunk.js.map": "/tweetgen/static/js/2.90f4e28c.chunk.js.map",
     "static/js/3.294567e2.chunk.js": "/tweetgen/static/js/3.294567e2.chunk.js",
     "static/js/3.294567e2.chunk.js.map": "/tweetgen/static/js/3.294567e2.chunk.js.map",
     "index.html": "/tweetgen/index.html",
     "static/css/main.3aad8350.chunk.css.map": "/tweetgen/static/css/main.3aad8350.chunk.css.map",
-    "static/js/2.ee473d97.chunk.js.LICENSE.txt": "/tweetgen/static/js/2.ee473d97.chunk.js.LICENSE.txt"
+    "static/js/2.90f4e28c.chunk.js.LICENSE.txt": "/tweetgen/static/js/2.90f4e28c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d3cf014d.js",
-    "static/js/2.ee473d97.chunk.js",
+    "static/js/2.90f4e28c.chunk.js",
     "static/css/main.3aad8350.chunk.css",
-    "static/js/main.40f09095.chunk.js"
+    "static/js/main.fa66fe7c.chunk.js"
   ]
 }
