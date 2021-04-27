@@ -1,4 +1,4 @@
 # TweetGenerator
 Fake a tweet
 
-![](https://github.com/Deepakmukka1/tweetgen/blob/master/screencapture-localhost-3000-2021-04-25-18_24_18.png)
+![](https://github.com/Deepakmukka1/tweetgen/blob/master/screencapture-deepakmukka1-github-io-tweetgen-2021-04-27-22_56_27.png)
