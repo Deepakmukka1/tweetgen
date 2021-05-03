@@ -76,3 +76,20 @@ code {
   padding: 10px;
   border-radius: 5px;
 }
+.verified {
+  color: rgba(29, 161, 242, 1);
+  /* background-color: rgba(29, 161, 242, 1); */
+}
+.generateButton {
+  padding: 0 5px 0 5px;
+  line-height: 5px;
+  outline: none;
+  cursor: pointer;
+  margin: 10px;
+  border: 1px solid rgba(29, 161, 242, 1);
+  background-color: rgba(29, 161, 242, 1);
+  color: white;
+  border-radius: 5px;
+  z-index: 999;
+  letter-spacing: 0.1rem;
+}
