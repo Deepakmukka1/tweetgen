@@ -3,6 +3,15 @@ import images from "./default-pfp.png";
 import "../App.css";
 
 function Tweet() {
+  const HASHTAG_FORMATTER = string => {
+    return string.split(/((?:^|\s)(?:@[a-z\d-]+|#[a-z\d-]+))/gi).filter(Boolean).map((v,i)=>{
+      if(v.includes('@') || v.includes('#')){
+        return <span key={i} style={{color:'rgba(29, 161, 242, 1)'}}>{v}</span>
+      }   else{
+        return <span key={i}>{v}</span>
+      }
+    })
+  };
   const [remove, setRemove] = useState(false);
   const data = {
     firsname: "Name",
@@ -23,42 +32,52 @@ function Tweet() {
   const [pro, setPro] = useState(false);
   const handleChange = (e) => {
     const name = e.target.name;
-    const value = e.target.value;
+    let value = e.target.value;
+    value = value.split("\n").map((str) => {
+      // let lis = str.split(" ");
+      // console.log(lis);
+    
+      // if(lis[0][0]=='@')
+      // return <span style={{color:'blue'}}>{lis[0]}<br/></span>
+      return (
+        <span>
+          {HASHTAG_FORMATTER(str)}
+          <br />
+        </span>
+      );
+    });
+   // value=HASHTAG_FORMATTER(value[0].props.children[0])
+  //  value=value.replace('@','<mark>$&</mark>')
     SetFileds({ ...fileds, [name]: value });
   };
   const generateRandom = () => {
- //   console.log("hello")
-   let fretweets= Math.round(Math.random() * 90000 + 1)
-   let flikes= Math.round(Math.random() * 90000 + 1)
-   let fquotetweets= Math.round(Math.random() * 90000 + 1)
-   if(fretweets >=1000)
-   {
-     fretweets/=1000
-     fretweets=fretweets.toFixed(1)
-    
-   }
-   
-   if(flikes >=1000)
-   {
+    //   console.log("hello")
+    let fretweets = Math.round(Math.random() * 90000 + 1);
+    let flikes = Math.round(Math.random() * 90000 + 1);
+    let fquotetweets = Math.round(Math.random() * 90000 + 1);
+    if (fretweets >= 1000) {
+      fretweets /= 1000;
+      fretweets = fretweets.toFixed(1);
+    }
 
-     flikes/=1000
-     flikes=flikes.toFixed(1)
-   }
-   
-   if(fquotetweets >=1000)
-   {
+    if (flikes >= 1000) {
+      flikes /= 1000;
+      flikes = flikes.toFixed(1);
+    }
 
-     fquotetweets/=1000
-     fquotetweets=fquotetweets.toFixed(1)
-   }
-   SetFileds({...fileds,likes:`${flikes}K`,retweets:`${fretweets}K`,quotetweets:`${fquotetweets}K`})
-   
-   
-
-
+    if (fquotetweets >= 1000) {
+      fquotetweets /= 1000;
+      fquotetweets = fquotetweets.toFixed(1);
+    }
+    SetFileds({
+      ...fileds,
+      likes: `${flikes}K`,
+      retweets: `${fretweets}K`,
+      quotetweets: `${fquotetweets}K`,
+    });
   };
+  
 
- 
   const handleProfile = (e) => {
     const file = e.target.files[0];
     //const name=e.target.name;
@@ -68,8 +87,7 @@ function Tweet() {
   };
   return (
     <div className="tweet-main">
-    
-        <div className="border-tweet">
+      <div className="border-tweet">
         <div className="headerPart">
           <img src={fileds.proImage || images} />
           <div className="usernames" style={{ marginTop: "5px" }}>
@@ -134,7 +152,8 @@ function Tweet() {
 
         <div className="numbers">
           <span>{fileds.retweets}</span> Retweets
-          <span style={{ marginLeft: "30px" }}>{fileds.quotetweets} </span> Quote Tweets
+          <span style={{ marginLeft: "30px" }}>{fileds.quotetweets} </span>{" "}
+          Quote Tweets
           <span style={{ marginLeft: "30px" }}>{fileds.likes} </span> Likes
         </div>
 
@@ -161,16 +180,18 @@ function Tweet() {
             </g>
           </svg>
         </div>
-
       </div>
-    <div style={{position:'absolute',left:'38%'}}>
-      <br/>
-     <span style={{display:'inline-flex'}}> <h4>Generate random retweets , likes , quotetweets</h4> <button className="generateButton" 
-     onClick={generateRandom}
-     >🗘</button></span>  
-    </div>
-     
-    
+      <div style={{ position: "absolute", left: "38%" }}>
+        <br />
+        <span style={{ display: "inline-flex" }}>
+          {" "}
+          <h4>Generate random retweets , likes , quotetweets</h4>{" "}
+          <button className="generateButton" onClick={generateRandom}>
+            ⟳
+          </button>
+        </span>
+      </div>
+
       <div className="container">
         <h5>Add verified tag</h5>
         <input
@@ -207,7 +228,9 @@ function Tweet() {
               AM / PM
             </option>
             <option value="AM">AM</option>
-            <option value="PM">PM</option>
+            <option value="PM" selected>
+              PM
+            </option>
           </select>
         </div>
         <h3>Date</h3>
@@ -249,10 +272,12 @@ function Tweet() {
         <textarea
           rows="10"
           cols="50"
+          id="tweet"
           style={{
             resize: "none",
             outline: "none",
             border: "1px solid #007BFF",
+            whiteSpace: "pre-wrap",
           }}
           placeholder="Enter tweet"
           name="tweet"
@@ -261,11 +286,10 @@ function Tweet() {
         <h3>Profile picture</h3>
         <input type="file" name="proImage" onChange={(e) => handleProfile(e)} />
         <br />
-    
-        <br />
-        <br/>
-      </div>
 
+        <br />
+        <br />
+      </div>
     </div>
   );
 }
