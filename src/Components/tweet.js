@@ -33,12 +33,10 @@ function Tweet() {
   const handleChange = (e) => {
     const name = e.target.name;
     let value = e.target.value;
+    if(name=="tweet")
+    {
     value = value.split("\n").map((str) => {
-      // let lis = str.split(" ");
-      // console.log(lis);
     
-      // if(lis[0][0]=='@')
-      // return <span style={{color:'blue'}}>{lis[0]}<br/></span>
       return (
         <span>
           {HASHTAG_FORMATTER(str)}
@@ -46,6 +44,7 @@ function Tweet() {
         </span>
       );
     });
+  }
    // value=HASHTAG_FORMATTER(value[0].props.children[0])
   //  value=value.replace('@','<mark>$&</mark>')
     SetFileds({ ...fileds, [name]: value });
