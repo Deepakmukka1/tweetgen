@@ -1,6 +1,6 @@
 # TweetGenerator
 
-Fake a tweet
+Fake a tweet , simply enter the basic information and hit generate
 
 ![](https://github.com/Deepakmukka1/tweetgen/blob/master/screencapture-deepakmukka1-github-io-tweetgen-2021-05-17-11_40_46.png)
 
