@@ -176,7 +176,7 @@ function Tweet() {
           </svg>
         </div>
       </div>
-      <div style={{ position: "absolute", left: "36%" }}>
+      <div style={{ position: "absolute", left: "36.5%" }}>
         <br />
         <span style={{ display: "inline-flex" }}>
           {" "}
