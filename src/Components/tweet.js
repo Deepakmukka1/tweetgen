@@ -33,7 +33,7 @@ function Tweet() {
   const handleChange = (e) => {
     const name = e.target.name;
     let value = e.target.value;
-    if(name=="tweet")
+    if(name==="tweet")
     {
     value = value.split("\n").map((str) => {
     
@@ -45,12 +45,11 @@ function Tweet() {
       );
     });
   }
-   // value=HASHTAG_FORMATTER(value[0].props.children[0])
-  //  value=value.replace('@','<mark>$&</mark>')
+
     SetFileds({ ...fileds, [name]: value });
   };
   const generateRandom = () => {
-    //   console.log("hello")
+   
     let fretweets = Math.round(Math.random() * 90000 + 1);
     let flikes = Math.round(Math.random() * 90000 + 1);
     let fquotetweets = Math.round(Math.random() * 90000 + 1);
@@ -78,8 +77,6 @@ function Tweet() {
   
 
   const handleProfile = (e) => {
-    const file = e.target.files[0];
-    //const name=e.target.name;
     SetFileds({ ...fileds, proImage: URL.createObjectURL(e.target.files[0]) });
     setPro(true);
     console.log(URL.createObjectURL(e.target.files[0]));
@@ -88,7 +85,7 @@ function Tweet() {
     <div className="tweet-main">
       <div className="border-tweet">
         <div className="headerPart">
-          <img src={fileds.proImage || images} />
+          <img src={fileds.proImage || images} alt="profile-pic" />
           <div className="usernames" style={{ marginTop: "5px" }}>
             <span
               style={{
@@ -132,7 +129,6 @@ function Tweet() {
               @{fileds.username}
             </span>
           </div>
-          {/* <img src={dots} /> */}
         </div>
         <h3
           style={{
@@ -186,7 +182,7 @@ function Tweet() {
           {" "}
           <h4>Generate random retweets , likes , quotetweets</h4>{" "}
           <button className="generateButton" onClick={generateRandom}>
-            ⟳
+            Generate ⟳
           </button>
         </span>
       </div>
