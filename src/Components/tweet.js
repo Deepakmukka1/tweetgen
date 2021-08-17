@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import images from "./default-pfp.png";
+import images from "../Resources/default-pfp.png";
 import "../App.css";
 
 function Tweet() {
