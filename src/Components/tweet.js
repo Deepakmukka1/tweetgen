@@ -1,17 +1,43 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from "react";
 import images from "../Resources/default-pfp.png";
+import * as htmlToImage from "html-to-image";
+import html2canvas from "html2canvas";
 import "../App.css";
 
 function Tweet() {
-  const HASHTAG_FORMATTER = string => {
-    return string.split(/((?:^|\s)(?:@[a-z\d-]+|#[a-z\d-]+))/gi).filter(Boolean).map((v,i)=>{
-      if(v.includes('@') || v.includes('#')){
-        return <span key={i} style={{color:'rgba(29, 161, 242, 1)'}}>{v}</span>
-      }   else{
-        return <span key={i}>{v}</span>
-      }
-    })
+  const HASHTAG_FORMATTER = (string) => {
+    return string
+      .split(/((?:^|\s)(?:@[a-z\d-]+|#[a-z\d-]+))/gi)
+      .filter(Boolean)
+      .map((v, i) => {
+        if (v.includes("@") || v.includes("#")) {
+          return (
+            <span key={i} style={{ color: "rgba(29, 161, 242, 1)" }}>
+              {v}
+            </span>
+          );
+        } else {
+          return <span key={i}>{v}</span>;
+        }
+      });
   };
+
+  // {style:{color:'#d9d9d9',border:'1px solid #d9d9d9',fontFamily:'"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',padding:'10px 15px 0 15px',width:'480px'}
+  const downloadTweet=()=>{
+
+    const coverImage = document.getElementById("border-tweet");
+		html2canvas(coverImage, {
+			useCORS: true
+		}).then(function (canvas) {
+			const a = document.createElement("a");
+			a.href = canvas.toDataURL("image/png");
+			a.download = "tweet-image.png";
+			a.click();
+		});
+
+  }
+
   const [remove, setRemove] = useState(false);
   const data = {
     firsname: "Name",
@@ -33,23 +59,20 @@ function Tweet() {
   const handleChange = (e) => {
     const name = e.target.name;
     let value = e.target.value;
-    if(name==="tweet")
-    {
-    value = value.split("\n").map((str) => {
-    
-      return (
-        <span>
-          {HASHTAG_FORMATTER(str)}
-          <br />
-        </span>
-      );
-    });
-  }
+    if (name === "tweet") {
+      value = value.split("\n").map((str) => {
+        return (
+          <span>
+            {HASHTAG_FORMATTER(str)}
+            <br />
+          </span>
+        );
+      });
+    }
 
     SetFileds({ ...fileds, [name]: value });
   };
   const generateRandom = () => {
-   
     let fretweets = Math.round(Math.random() * 90000 + 1);
     let flikes = Math.round(Math.random() * 90000 + 1);
     let fquotetweets = Math.round(Math.random() * 90000 + 1);
@@ -74,18 +97,16 @@ function Tweet() {
       quotetweets: `${fquotetweets}K`,
     });
   };
-  
 
   const handleProfile = (e) => {
     SetFileds({ ...fileds, proImage: URL.createObjectURL(e.target.files[0]) });
     setPro(true);
-    console.log(URL.createObjectURL(e.target.files[0]));
   };
   return (
     <div className="tweet-main">
-      <div className="border-tweet">
+      <div id="border-tweet">
         <div className="headerPart">
-          <img src={fileds.proImage || images} alt="profile-pic" />
+          <img src={fileds.proImage || images} alt="profile-picture" />
           <div className="usernames" style={{ marginTop: "5px" }}>
             <span
               style={{
@@ -153,6 +174,7 @@ function Tweet() {
         </div>
 
         <div className="emojis">
+        {/* <svg viewBox="0 0 24 24" aria-hidden="true" className="tweetemojis"><g><path d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"></path></g></svg> */}
           <svg viewBox="0 0 24 36" className="tweetemojis">
             <g>
               <path d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"></path>{" "}
@@ -176,13 +198,23 @@ function Tweet() {
           </svg>
         </div>
       </div>
-      <div style={{ position: "absolute", left: "36.5%" }}>
+      <div style={{ position: "absolute", left: "39.5%" }}>
         <br />
-        <span style={{ display: "inline-flex" }}>
+        <span
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           {" "}
           <h4>Generate random retweets , likes , quotetweets</h4>{" "}
           <button className="generateButton" onClick={generateRandom}>
             Generate ⟳
+          </button>
+          {/* <h4>Download tweet as png</h4>{" "} */}
+          <button className="generateButton" onClick={downloadTweet}>
+            Download
           </button>
         </span>
       </div>
